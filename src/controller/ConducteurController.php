@@ -25,6 +25,7 @@ class ConducteurController extends AbstractController{
 
     
     public static function new() {
+        echo self::getTwig()->render('conducteur/new.html');
         
     }
 

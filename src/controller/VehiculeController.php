@@ -25,7 +25,7 @@ class VehiculeController extends AbstractController{
 
     
     public static function new() {
-        
+        echo self::getTwig()->render('vehicule/new.html');
     }
 
     

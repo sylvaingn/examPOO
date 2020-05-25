@@ -1,14 +1,18 @@
 <?php
 namespace App\Controller;
 
+use App\Model\Association;
 
 class AssociationController extends AbstractController{
 
 
     public static function index(){
 
-        echo self::getTwig()->render('association/index.html');
-
+        $associations = Association::findAll();
+        echo self::getTwig()->render('association/index.html', [
+            'associations' => $associations
+        ]);
+        /* var_dump($associations); */
     }
 
 

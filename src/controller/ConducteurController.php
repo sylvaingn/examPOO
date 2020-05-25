@@ -1,14 +1,17 @@
 <?php
 namespace App\Controller;
 
+use App\Model\Conducteur;
 
 class ConducteurController extends AbstractController{
 
 
     public static function index(){
 
-        echo self::getTwig()->render('conducteur/index.html');
-
+        $conducteurs = Conducteur::findAll();
+        echo self::getTwig()->render('conducteur/index.html', [
+            'conducteurs' => $conducteurs
+        ]);
     }
 
 

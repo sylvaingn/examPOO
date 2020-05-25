@@ -1,13 +1,17 @@
 <?php
 namespace App\Controller;
 
+use App\Model\Vehicule;
 
 class VehiculeController extends AbstractController{
 
 
     public static function index(){
 
-        echo self::getTwig()->render('vehicule/index.html');
+        $vehicules = Vehicule::findAll();
+        echo self::getTwig()->render('vehicule/index.html', [
+            'vehicules' => $vehicules
+        ]);
 
     }
 
@@ -45,5 +49,6 @@ class VehiculeController extends AbstractController{
     {
         echo self::getTwig()->render('vehicule/delete.html');
     }
+
 
 }

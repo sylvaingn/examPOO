@@ -27,7 +27,7 @@ class Conducteur extends AbstractModel
     /**
      * @return int
      */
-    public function get_id_conducteur()
+    public function getIdConducteur()
     {
 
         return $this->id_conducteur;
@@ -36,7 +36,7 @@ class Conducteur extends AbstractModel
     /**
      * @return int
      */
-    public function set_id_conducteur(int $id)
+    public function setIdConducteur(int $id)
     {
 
         $this->id_conducteur = $id;
@@ -47,7 +47,7 @@ class Conducteur extends AbstractModel
     /**
      * @return string
      */
-    public function get_prenom()
+    public function getPrenom()
     {
 
         return $this->prenom;
@@ -56,7 +56,7 @@ class Conducteur extends AbstractModel
     /**
      * @return string
      */
-    public function set_prenom(string $prenom)
+    public function setPrenom(string $prenom)
     {
 
         $this->prenom = $prenom;
@@ -67,7 +67,7 @@ class Conducteur extends AbstractModel
     /**
      * @return string
      */
-    public function get_nom()
+    public function getNom()
     {
 
         return $this->nom;
@@ -76,10 +76,57 @@ class Conducteur extends AbstractModel
     /**
      * @return string
      */
-    public function set_nom(string $nom)
+    public function setNom(string $nom)
     {
 
         $this->nom = $nom;
         return $this;
+    }
+
+
+    public static function findAll()
+    {
+
+        $bdd = self::getPdo();
+
+        $query = "SELECT * FROM conducteur";
+        $response = $bdd->prepare($query);
+        $response->execute();
+
+        $data = $response->fetchAll();
+
+        $dataAsObjects = [];
+
+        foreach ($data as $d) {
+            $dataAsObjects[] = self::toObject($d);
+        }
+
+        return $dataAsObjects;
+    }
+
+    public function store() {
+
+        $pdo = self::getPdo();
+    
+        $query = 'INSERT INTO conducteur(prenom, nom) VALUES (:prenom, :nom)';
+    
+        $response = $pdo->prepare($query);
+        $response->execute([
+            'prenom' => $this->getPrenom(),
+            'nom' => $this->getNom()
+        ]);
+    
+        return true;
+    }
+
+    public static function toObject($array)
+    {
+        /* var_dump($array); */
+        $conducteur = new Conducteur;
+        $conducteur->setIdConducteur($array['id_conducteur']);
+        $conducteur->setPrenom($array['prenom']);
+        $conducteur->setNom($array['nom']);
+
+        return $conducteur;
     }
 }

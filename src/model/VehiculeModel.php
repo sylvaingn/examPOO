@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use Symfony\Component\VarDumper\VarDumper;
 
 class Vehicule extends AbstractModel
 {
@@ -36,7 +37,7 @@ class Vehicule extends AbstractModel
     /**
      * @return int
      */
-    public function get_id_vehicule()
+    public function getIdVehicule()
     {
 
         return $this->id_vehicule;
@@ -45,7 +46,7 @@ class Vehicule extends AbstractModel
     /**
      * @return int
      */
-    public function set_id_vehicule(int $id)
+    public function setIdVehicule(int $id)
     {
 
         $this->id_vehicule = $id;
@@ -56,7 +57,7 @@ class Vehicule extends AbstractModel
     /**
      * @return string
      */
-    public function get_marque()
+    public function getMarque()
     {
 
         return $this->marque;
@@ -65,7 +66,7 @@ class Vehicule extends AbstractModel
     /**
      * @return string
      */
-    public function set_marque(string $marque)
+    public function setMarque(string $marque)
     {
 
         $this->marque = $marque;
@@ -76,7 +77,7 @@ class Vehicule extends AbstractModel
     /**
      * @return string
      */
-    public function get_modele()
+    public function getModele()
     {
 
         return $this->modele;
@@ -85,7 +86,7 @@ class Vehicule extends AbstractModel
     /**
      * @return string
      */
-    public function set_modele(string $modele)
+    public function setModele(string $modele)
     {
 
         $this->modele = $modele;
@@ -96,7 +97,7 @@ class Vehicule extends AbstractModel
     /**
      * @return string
      */
-    public function get_couleur()
+    public function getCouleur()
     {
 
         return $this->couleur;
@@ -105,7 +106,7 @@ class Vehicule extends AbstractModel
     /**
      * @return string
      */
-    public function set_couleur(string $couleur)
+    public function setCouleur(string $couleur)
     {
 
         $this->couleur = $couleur;
@@ -116,7 +117,7 @@ class Vehicule extends AbstractModel
     /**
      * @return string
      */
-    public function get_immatriculation()
+    public function getImmatriculation()
     {
 
         return $this->immatriculation;
@@ -125,10 +126,60 @@ class Vehicule extends AbstractModel
     /**
      * @return string
      */
-    public function set_immatriculation(string $immatriculation)
+    public function setImmatriculation(string $immatriculation)
     {
 
         $this->immatriculation = $immatriculation;
         return $this;
+    }
+
+    public static function findAll()
+    {
+
+        $bdd = self::getPdo();
+
+        $query = "SELECT * FROM vehicule";
+        $response = $bdd->prepare($query);
+        $response->execute();
+
+        $data = $response->fetchAll();
+
+        $dataAsObjects = [];
+
+        foreach ($data as $d) {
+            $dataAsObjects[] = self::toObject($d);
+        }
+
+        return $dataAsObjects;
+    }
+
+    public function store() {
+
+        $pdo = self::getPdo();
+    
+        $query = 'INSERT INTO vehicule(marque, modele, couleur, immatriculation) VALUES (:marque, :modele, :couleur, :immatriculation)';
+    
+        $response = $pdo->prepare($query);
+        $response->execute([
+            'marque' => $this->getMarque(),
+            'modele' => $this->getModele(),
+            'couleur' => $this->getCouleur(),
+            'immatriculation' => $this->getImmatriculation()
+        ]);
+    
+        return true;
+    }
+
+    public static function toObject($array)
+    {
+        /* var_dump($array); */
+        $vehicule = new Vehicule;
+        $vehicule->setIdVehicule($array['id_vehicule']);
+        $vehicule->setMarque($array['marque']);
+        $vehicule->setModele($array['modele']);
+        $vehicule->setCouleur($array['couleur']);
+        $vehicule->setImmatriculation($array['immatriculation']);
+
+        return $vehicule;
     }
 }

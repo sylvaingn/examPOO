@@ -24,7 +24,7 @@ class Association extends AbstractModel{
     /**
      * @return int
      */
-    public function get_id_association(){
+    public function getIdAssociation(){
 
         return $this->id_association;
     }
@@ -32,7 +32,7 @@ class Association extends AbstractModel{
     /**
      * @return int
      */
-    public function set_id_association(int $id){
+    public function setIdAssociation(int $id){
 
         $this->id_association = $id;
         return $this;
@@ -43,7 +43,7 @@ class Association extends AbstractModel{
     /**
      * @return int
      */
-    public function get_id_vehicule(){
+    public function getIdVehicule(){
 
         return $this->id_vehicule;
     }
@@ -51,7 +51,7 @@ class Association extends AbstractModel{
     /**
      * @return int
      */
-    public function set_id_vehicule(int $id){
+    public function setIdVehicule(int $id){
 
         $this->id_vehicule = $id;
         return $this;
@@ -62,7 +62,7 @@ class Association extends AbstractModel{
     /**
      * @return int
      */
-    public function get_id_conducteur(){
+    public function getIdConducteur(){
 
         return $this->id_conducteur;
     }
@@ -70,13 +70,62 @@ class Association extends AbstractModel{
     /**
      * @return int
      */
-    public function set_id_conducteur(int $id){
+    public function setIdConducteur(int $id){
 
         $this->id_conducteur = $id;
         return $this;
     }
 
 
+
+    public static function findAll()
+    {
+
+        $bdd = self::getPdo();
+
+        $query = "SELECT * FROM association_vehicule_conducteur";
+        $response = $bdd->prepare($query);
+        $response->execute();
+
+        $data = $response->fetchAll();
+
+        $dataAsObjects = [];
+
+        foreach ($data as $d) {
+            $dataAsObjects[] = self::toObject($d);
+        }
+
+        return $dataAsObjects;
+    }
+
+    public function store() {
+
+        $pdo = self::getPdo();
+    
+        $query = 'INSERT INTO association_vehicule_conducteur(id_association, id_vehicule, id_conducteur) 
+        VALUES (:id_association, :id_vehicule, :id_conducteur)';
+    
+        $response = $pdo->prepare($query);
+        $response->execute([
+            'id_association' => $this->getIdAssociation(),
+            'id_vehicule' => $this->getIdVehicule(),
+            'id_conducteur' => $this->getIdConducteur(),
+        ]);
+    
+        return true;
+    }
+
+    public static function toObject($array)
+    {
+        /* var_dump($array); */
+        $association = new Association;
+        $association->setIdAssociation($array['id_association']);
+        $association->setIdVehicule($array['id_vehicule']);
+        $association->setIdConducteur($array['id_conducteur']);
+
+
+        return $association;
+    }
 
 
 }

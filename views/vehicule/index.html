@@ -1,0 +1,48 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+
+
+<table class="table table-striped table-dark mt-5">
+    <thead>
+        <tr>
+            <th scope="col">id_vehicule</th>
+            <th scope="col">Marque</th>
+            <th scope="col">Modèle</th>
+            <th scope="col">Couleur</th>
+            <th scope="col">Immatriculation</th>
+            <th scope="col">Modification</th>
+            <th scope="col">Suppression</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td>@fat</td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<a class="btn btn-primary" href="{{ base_path ~ '/vehicule/create' }}" role="button">Ajouter un véhicule</a>
+
+{% endblock %}

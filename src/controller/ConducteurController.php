@@ -28,8 +28,12 @@ class ConducteurController extends AbstractController{
 
     
     public static function new() {
-        echo self::getTwig()->render('conducteur/new.html');
-        
+        $vehicule = new Conducteur;
+        $vehicule->setPrenom($_POST['prenom']);
+        $vehicule->setNom($_POST['nom']);
+        $vehicule->store();
+
+        self::index();
     }
 
     

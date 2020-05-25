@@ -3,7 +3,7 @@
 /**
  * Configuration du projet
  */
-const BASE_PATH = "http://localhost:8888/examPOO/";
+const BASE_PATH = "http://localhost:8888/examPOO";
 
 /**
  * Configuration de la base de données

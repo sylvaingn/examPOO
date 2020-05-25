@@ -1,0 +1,36 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+
+<h2>Liste des associations :</h2>
+
+<table class="table table-striped table-dark mt-5">
+    <thead>
+        <tr>
+            <th scope="col">id_association</th>
+            <th scope="col">Conducteur</th>
+            <th scope="col">Véhicule</th>
+            <th scope="col">Modification</th>
+            <th scope="col">Suppression</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for association in associations %}
+        <tr>
+            <th scope="row">{{association_vehicule_conducteur.id_association}}</th>
+            <td>{{association_vehicule_conducteur.id_conducteur}}</td>
+            <td>{{association_vehicule_conducteur.id_vehicule}}</td>
+            <td><a href="{{ base_path ~ '/association_vehicule_conducteur/edit' }}"><img height="2px" src="/assets/img/modif.png"></a></td>
+            <td><a href="{{ base_path ~ '/association_vehicule_conducteur/delete' }}"><img height="2px" src="/assets/img/supp.png"></a></td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+
+<a class="btn btn-primary" href="{{ base_path ~ '/association_vehicule_conducteur/create' }}" role="button">Ajouter une association</a>
+
+{% endblock %}

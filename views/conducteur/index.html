@@ -3,6 +3,7 @@
 {% block content %}
 
 
+<h2>Liste des conducteurs :</h2>
 
 <table class="table table-striped table-dark mt-5">
     <thead>
@@ -16,24 +17,15 @@
         </tr>
     </thead>
     <tbody>
+        {% for conducteur in conducteurs %}
         <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
+            <th scope="row">{{conducteur.id_conducteur}}</th>
+            <td>{{conducteur.prenom}}</td>
+            <td>{{conducteur.nom}}</td>
             <td><a href="{{ base_path ~ '/conducteur/edit' }}"><img height="2px" src="/assets/img/modif.png"></a></td>
             <td><a href="{{ base_path ~ '/conducteur/delete' }}"><img height="2px" src="/assets/img/supp.png"></a></td>
-
         </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-        </tr>
+        {% endfor %}
     </tbody>
 </table>
 

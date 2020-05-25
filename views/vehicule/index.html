@@ -3,6 +3,7 @@
 {% block content %}
 
 
+<h2>Liste des véhicules :</h2>
 
 <table class="table table-striped table-dark mt-5">
     <thead>
@@ -18,27 +19,17 @@
         </tr>
     </thead>
     <tbody>
+        {% for vehicule in vehicules %}
         <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
+            <td>{{vehicule.id_vehicule}}</td>
+            <td>{{vehicule.marque}}</td>
+            <td>{{vehicule.modele}}</td>
+            <td>{{vehicule.couleur}}</td>
+            <td>{{vehicule.immatriculation}}</td>
+            <td><a href="{{ base_path ~ '/vehicule/edit' }}"><img height="2px" src="/assets/img/modif.png"></a></td>
+            <td><a href="{{ base_path ~ '/vehicule/delete' }}"><img height="2px" src="/assets/img/supp.png"></a></td>
         </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-        </tr>
+        {% endfor %}
     </tbody>
 </table>
 

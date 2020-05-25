@@ -10,17 +10,17 @@ class Conducteur extends AbstractModel
     /**
      * @var int
      */
-    private $id_conducteur;
+    public $id_conducteur;
 
     /**
      * @var string
      */
-    private $prenom;
+    public $prenom;
 
     /**
      * @var string
      */
-    private $nom;
+    public $nom;
 
 
 

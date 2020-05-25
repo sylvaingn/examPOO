@@ -8,17 +8,17 @@ class Association extends AbstractModel{
     /**
      * @var int
      */
-    private $id_association;
+    public $id_association;
 
     /**
      * @var int
      */
-    private $id_vehicule;
+    public $id_vehicule;
 
     /**
      * @var int
      */
-    private $id_conducteur;
+    public $id_conducteur;
 
 
     /**
@@ -83,7 +83,9 @@ class Association extends AbstractModel{
 
         $bdd = self::getPdo();
 
-        $query = "SELECT * FROM association_vehicule_conducteur";
+        $query = "SELECT * FROM association_vehicule_conducteur
+                    left join conducteur on association_vehicule_conducteur.id_conducteur = conducteur.id_conducteur
+                    left join vehicule on association_vehicule_conducteur.id_vehicule = vehicule.id_vehicule";
         $response = $bdd->prepare($query);
         $response->execute();
 

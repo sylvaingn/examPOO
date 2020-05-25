@@ -11,27 +11,27 @@ class Vehicule extends AbstractModel
     /**
      * @var int
      */
-    private $id_vehicule;
+    public $id_vehicule;
 
     /**
      * @var string
      */
-    private $marque;
+    public $marque;
 
     /**
      * @var string
      */
-    private $modele;
+    public $modele;
 
     /**
      * @var string
      */
-    private $couleur;
+    public $couleur;
 
     /**
      * @var string
      */
-    private $immatriculation;
+    public $immatriculation;
 
 
     /**

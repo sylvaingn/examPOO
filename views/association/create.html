@@ -1,0 +1,26 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<form action="{{ base_path ~ '/association_vehicule_conducteur' }}" method="POST">
+    <div class="form-group">
+        <label for="FormPrenom">Conducteur :</label>
+        <select class="form-control">
+            <option>Choisir un conducteur</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="FormNom">Véhicule :</label>
+        <select class="form-control">
+            <option>Choisir un véhicule</option>
+        </select>
+    </div>
+
+
+    <button type="submit">Ajouter !</button>
+
+
+
+
+    {% endblock %}

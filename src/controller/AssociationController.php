@@ -29,10 +29,10 @@ class AssociationController extends AbstractController{
 
     
     public static function new() {
-        $vehicule = new Association;
-        $vehicule->setIdConducteur($_POST['id_conducteur']);
-        $vehicule->setIdVehicule($_POST['id_vehicule']);
-        $vehicule->store();
+        $association = new Association;
+        $association->setIdConducteur($_POST['id_conducteur']);
+        $association->setIdVehicule($_POST['id_vehicule']);
+        $association->store();
 
         self::index();
     }

@@ -6,14 +6,18 @@
     <div class="form-group">
         <label for="FormPrenom">Conducteur :</label>
         <select class="form-control">
-            <option>Choisir un conducteur</option>
+            {% for conducteur in conducteurs%}
+            <option>{{conducteur.id_conducteur}}</option>
+            {% endfor %}
         </select>
     </div>
 
     <div class="form-group">
         <label for="FormNom">Véhicule :</label>
         <select class="form-control">
-            <option>Choisir un véhicule</option>
+            {% for conducteur in conducteurs%}
+            <option>{{vehicule.id_vehicule}}</option>
+            {% endfor %}
         </select>
     </div>
 

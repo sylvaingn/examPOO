@@ -19,9 +19,9 @@
     <tbody>
         {% for association in associations %}
         <tr>
-            <th scope="row">{{association_vehicule_conducteur.id_association}}</th>
-            <td>{{association_vehicule_conducteur.id_conducteur}}</td>
-            <td>{{association_vehicule_conducteur.id_vehicule}}</td>
+            <th scope="row">{{association.id_association}}</th>
+            <td>{{association.id_conducteur}}</td>
+            <td>{{association.id_vehicule}}</td>
             <td><a href="{{ base_path ~ '/association_vehicule_conducteur/edit' }}"><img height="2px" src="/assets/img/modif.png"></a></td>
             <td><a href="{{ base_path ~ '/association_vehicule_conducteur/delete' }}"><img height="2px" src="/assets/img/supp.png"></a></td>
         </tr>

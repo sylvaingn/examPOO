@@ -12,7 +12,7 @@ class AssociationController extends AbstractController{
         echo self::getTwig()->render('association/index.html', [
             'associations' => $associations
         ]);
-        /* var_dump($associations); */
+        var_dump($associations);
     }
 
 
@@ -29,7 +29,12 @@ class AssociationController extends AbstractController{
 
     
     public static function new() {
-        
+        $vehicule = new Association;
+        $vehicule->setIdConducteur($_POST['id_conducteur']);
+        $vehicule->setIdVehicule($_POST['id_vehicule']);
+        $vehicule->store();
+
+        self::index();
     }
 
     
